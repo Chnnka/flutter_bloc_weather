@@ -7,6 +7,8 @@ class WeatherModel {
   final double currentPressure;
   final double currentWindSpeed;
   final double currentHumidity;
+  final String hourlySky;
+  final double hourlyTemp;
 
   WeatherModel({
     required this.currentTemp,
@@ -14,6 +16,8 @@ class WeatherModel {
     required this.currentPressure,
     required this.currentWindSpeed,
     required this.currentHumidity,
+    required this.hourlySky,
+    required this.hourlyTemp,
   });
 
   WeatherModel copyWith({
@@ -22,6 +26,8 @@ class WeatherModel {
     double? currentPressure,
     double? currentWindSpeed,
     double? currentHumidity,
+    String? hourlySky,
+    double? hourlyTemp,
   }) {
     return WeatherModel(
       currentTemp: currentTemp ?? this.currentTemp,
@@ -29,6 +35,8 @@ class WeatherModel {
       currentPressure: currentPressure ?? this.currentPressure,
       currentWindSpeed: currentWindSpeed ?? this.currentWindSpeed,
       currentHumidity: currentHumidity ?? this.currentHumidity,
+      hourlySky: hourlySky ?? this.hourlySky,
+      hourlyTemp: hourlyTemp ?? this.hourlyTemp,
     );
   }
 
@@ -44,6 +52,7 @@ class WeatherModel {
 
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
     final currentWeatherData = map['list'][0];
+    final hourlyWeatherData = map['list'][0];
 
     return WeatherModel(
       currentTemp: currentWeatherData['main']['temp'],
@@ -51,6 +60,8 @@ class WeatherModel {
       currentPressure: currentWeatherData['main']['pressure'],
       currentWindSpeed: currentWeatherData['wind']['speed'],
       currentHumidity: currentWeatherData['main']['humidity'],
+      hourlySky: hourlyWeatherData['weather']['main'],
+      hourlyTemp: hourlyWeatherData['main']['temp'],
     );
   }
 

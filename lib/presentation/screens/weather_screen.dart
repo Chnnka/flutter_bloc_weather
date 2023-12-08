@@ -35,9 +35,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              // setState(() {
-              //   weather = getCurrentWeather();
-              // });
+              setState(() {
+                context.read<WeatherBloc>().add(WeatherFetched());
+              });
             },
             icon: const Icon(Icons.refresh),
           ),
@@ -57,7 +57,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
           }
 
           final data = state.weatherModel;
-          final hourlyForecast = state.weatherModel;
 
           final currentTemp = data.currentTemp;
           final currentSky = data.currentSky;
@@ -132,15 +131,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 //     itemCount: 5,
                 //     scrollDirection: Axis.horizontal,
                 //     itemBuilder: (context, index) {
-                //       final hourlyForecast = hourlyForecast.;
-                //       final hourlySky =
-                //           data['list'][index + 1]['weather'][0]['main'];
-                //       final hourlyTemp =
-                //           hourlyForecast['main']['temp'].toString();
-                //       final time = DateTime.parse(hourlyForecast['dt_txt']);
+                //       final hourlySky = data.hourlySky;
+                //       final hourlyTemp = data.hourlyTemp;
+
+                //       final time = DateTime.parse();
                 //       return HourlyForecastItem(
                 //         time: DateFormat.j().format(time),
-                //         temperature: hourlyTemp,
+                //         temperature: hourlyTemp.toString(),
                 //         icon: hourlySky == 'Clouds' || hourlySky == 'Rain'
                 //             ? Icons.cloud
                 //             : Icons.sunny,
